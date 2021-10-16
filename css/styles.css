@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+}
+
+.home {
+  background-image: url("https://images.squarespace-cdn.com/content/v1/50a7da09e4b07b4b7b0c2aa1/1546204471303-V1UNPNBJ00M7U5ZS7SMO/photo_workshop_glacier-6.jpg?format=2500w");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.hero {
+  background-color: transparent;
+}
+
+.hero {
+  height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

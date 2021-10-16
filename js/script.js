@@ -5,7 +5,7 @@ console.log("here");
 
 function translate() {
 
-  const url = APIURL + "parks?" + APIKEY;
+  const url = APIURL + "parks?q=zion" + APIKEY;
   fetch(url)
     .then(function(response) {
       return response.json();

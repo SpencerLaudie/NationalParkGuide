@@ -28,18 +28,55 @@ async function loadParkData() {
   parkCode = parseURLParams(window.location.href).parkCode[0];
   let park = await getParkById(parkCode);
   image_url = "url('" + park[0].images[Math.floor(Math.random()*park[0].images.length)].url + "')";
+  $("#park-img").css("background-image", image_url)
+  $("#park-designation").html(park[0].designation);
+  $("#park-name").html(park[0].name);
+  $("#park-description").html(park[0].description);
 
-  let page_content = ""
-  page_content += "";
-  page_content += "<div class='park_content_container'>";
-  page_content += "<h6>" + park[0].designation + "</h6>";
-  page_content += "<div class='display-4 park-name'>" + park[0].name + "</div>";
-  page_content += "<br><p>" + park[0].description + "</p>";
-  page_content += "</div>";
-  page_content += ""
-  console.log(page_content);
-  $(".park-data").append(page_content);
-  $(".park-img").css("background-image", image_url)
+  for (let i = 0; i < park[0].entranceFees.length; i++) {
+    let fees = "<div class='fee-container'><h2 class='font-weight-light'>$" + park[0].entranceFees[i].cost + "</h2>";
+    fees += "<div class='fee-description-container'><h6 class='fee-title'>" + park[0].entranceFees[i].title + "</h6>";
+    fees += "<p>" + park[0].entranceFees[i].description + "</p></div></div>";
+    $("#list-fees").append(fees);
+  }
+
+  for (let i = 0; i < park[0].operatingHours.length; i++) {
+    let hours = "<div class='hours-container'><h3>" + park[0].operatingHours[i].name + "</h3>";
+    hours += "<p>" + park[0].operatingHours[i].description + "</p>";
+    hours += "<table>" +
+                "<tr>" +
+                  "<td class='font-weight-bold'>Sunday</td>" +
+                  "<td>" + park[0].operatingHours[i].standardHours.sunday + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                  "<td class='font-weight-bold'>Monday</td>" +
+                  "<td>" + park[0].operatingHours[i].standardHours.monday + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                  "<td class='font-weight-bold'>Tuesday</td>" +
+                  "<td>" + park[0].operatingHours[i].standardHours.tuesday + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                  "<td class='font-weight-bold'>Wednesday</td>" +
+                  "<td>" + park[0].operatingHours[i].standardHours.wednesday + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                  "<td class='font-weight-bold'>Thursday</td>" +
+                  "<td>" + park[0].operatingHours[i].standardHours.thursday + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                  "<td class='font-weight-bold'>Friday</td>" +
+                  "<td>" + park[0].operatingHours[i].standardHours.friday + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                  "<td class='font-weight-bold'>Saturday</td>" +
+                  "<td>" + park[0].operatingHours[i].standardHours.saturday + "</td>" +
+                "</tr>" +
+              "</table>";
+    hours += "</div";
+    $("#list-hours").append(hours);
+  }
+
 }
 
 function parseURLParams(url) {
